@@ -4,15 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".BloodPressureApp"
+    android:background="@drawable/line_background_medical">
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="0dp"
+        android:layout_height="192dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCreatorNames">
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/readingDate"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="@string/reading_date"-->
+        <!--            android:paddingStart="4dp"-->
+        <!--            android:textSize="15sp" />-->
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/readingTime"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="11dp"-->
+        <!--            android:layout_marginBottom="0dp"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="@string/reading_time"-->
+        <!--            android:paddingStart="4dp"-->
+        <!--            android:textSize="15sp"/>-->
+
+        <EditText
+            android:id="@+id/txUserId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/user_id"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/txSystolicReading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/systolic_readings"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/txDiastolicReading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/diastolic_reading"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout">
+
+        <LinearLayout
+            android:id="@+id/displayLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/txtCreatorNames"
+        android:layout_width="258dp"
+        android:layout_height="31dp"
+        android:text="@string/creatorNames"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_GenReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="336dp"
+        android:background="@color/createButtonBG"
+        android:onClick="createReading"
+        android:text="@string/generate_report"
+        android:textColor="@color/buttonText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtCreatorNames" />
+
+    <Button
+        android:id="@+id/bt_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/createButtonBG"
+        android:onClick="createReading"
+        android:text="@string/create_reading"
+        android:textColor="@color/buttonText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="471dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">Assignment2</string>
+    <string name="app_name">Blood Pressure App</string>
+    <string name="id_extra">id</string>
+    <string name="db_fetch_err">Something Went Wrong.</string>
+    <string name="date_format">mm/dd/yy</string>
+    <string name="prepend_userId">User Id: </string>
+    <string name="prepend_systolic">Systolic Pressure: </string>
+    <string name="prepend_diastolic">Diastolic Pressure: </string>
+    <string name="prepend_time"> Time: </string>
+    <string name="prepend_date">Date: </string>
+    <string name="prepend_condition">Condition: </string>
+    <string name="edit">Edit </string>
+    <string name="remove">Remove </string>
+    <string name="create_reading">Create Reading </string>
+    <string name="user_id">User ID </string>
+    <string name="reading_date">Date: </string>
+    <string name="reading_time">Time: </string>
+    <string name="systolic_readings">Systolic Readings</string>
+    <string name="diastolic_reading">Diastolic Reading</string>
+    <string name="condition">Condition: </string>
+    <string name="edit_reading">Edit Reading </string>
+    <string name="time_picker_title">Select Time </string>
+    <string name="am">AM </string>
+    <string name="pm">PM </string>
+    <string name="creatorNames">Created by: Simran Gandhi, Diyar Ravandi</string>
+    <string name="generate_report">Generate Report</string>
+    <string name="systolic_label">Systolic Average: </string>
+    <string name="diastolic_label">Diastolic Average: </string>
+    <string name="condition_label">Condition Average: </string>
 </resources>
