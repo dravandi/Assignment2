@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "442464946264",
+    "firebase_url": "https://assignment2-eccdb.firebaseio.com",
+    "project_id": "assignment2-eccdb",
+    "storage_bucket": "assignment2-eccdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442464946264:android:f087855102436b0a09622d",
+        "android_client_info": {
+          "package_name": "ca.bcit.assignment2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442464946264-i5d0m07fepiqva63r978c00rd3sekih2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIN_peJMFK1HZyy4ggeNjgU7bRWqNP_74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442464946264-i5d0m07fepiqva63r978c00rd3sekih2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
