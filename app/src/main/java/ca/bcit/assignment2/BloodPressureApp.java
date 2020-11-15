@@ -290,7 +290,7 @@ public class BloodPressureApp extends AppCompatActivity {
             // Wrapper so that removeAllChildViews can delete views in readings at once
             LinearLayout readingWrapperLayout = new LinearLayout(this);
             readingWrapperLayout.setOrientation(LinearLayout.VERTICAL);
-            readingWrapperLayout.setBackgroundResource(R.drawable.line_background_medical);
+            //readingWrapperLayout.setBackgroundResource(R.drawable.line_background_medical);
 
 
             readingWrapperLayout.addView(displaySublayout1);

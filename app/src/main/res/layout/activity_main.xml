@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BloodPressureApp"
-    android:background="@drawable/line_background_medical">
+    tools:context=".BloodPressureApp">
 
     <LinearLayout
         android:id="@+id/inputLayout"
         android:layout_width="0dp"
         android:layout_height="192dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="136dp"
         android:layout_marginEnd="10dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bt_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,19 +90,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_GenReport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="336dp"
-        android:background="@color/createButtonBG"
-        android:onClick="createReading"
-        android:text="@string/generate_report"
-        android:textColor="@color/buttonText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtCreatorNames" />
 
     <Button
         android:id="@+id/bt_create"
@@ -113,10 +99,28 @@
         android:onClick="createReading"
         android:text="@string/create_reading"
         android:textColor="@color/buttonText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="471dp" />
+        app:layout_constraintTop_toTopOf="@+id/txtCreatorNames"
+        app:layout_constraintVertical_bias="0.549"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_GenReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/createButtonBG"
+        android:onClick="createReading"
+        android:text="@string/generate_report"
+        android:textColor="@color/buttonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_create"
+        app:layout_constraintVertical_bias="0.134" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
