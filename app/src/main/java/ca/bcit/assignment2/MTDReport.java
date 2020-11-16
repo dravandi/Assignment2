@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class MTDReport extends AppCompatActivity {
 
-    // Connect to firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     // Will create a subtable called "BPReadings" when you first add an entry
@@ -70,6 +69,7 @@ public class MTDReport extends AppCompatActivity {
         double systolicAverage;
         double diastolicAverage;
         String conditionAverage;
+
         //Loops through all readings and takes average for ones under the users name.
         for(BPReading bpReading: bpReadingsList){
             if(bpReading.familyMember.equals(familyMember)){
@@ -78,6 +78,7 @@ public class MTDReport extends AppCompatActivity {
                 counter++;
             }
         }
+
         //Assigns the calculated averages.
         systolicAverage = systolicTotal/counter;
         diastolicAverage = diastolicTotal/counter;

@@ -3,10 +3,9 @@ package ca.bcit.assignment2;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BPReading {
+class BPReading {
     public String familyMember;
     public String id;
-    public String userId;
     public String time;
     public String date;
     public String systolicReading;
@@ -27,7 +26,7 @@ public class BPReading {
         //Code block for autogenerating date and time for the reading.
         //Converts system time into a formatted datetime string and splits it.
         Date currentDate = new Date(System.currentTimeMillis());
-        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("mm/dd/yyyy HH:mm:ss");
+        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         String dateTime = dateTimeFormatter.format(currentDate);
         String[] splitDateTime = dateTime.split(" ");
         this.date = splitDateTime[0];

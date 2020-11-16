@@ -16,8 +16,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/bt_edit"
@@ -28,13 +27,12 @@
             android:textColor="@color/buttonText"
             android:text="@string/edit_reading" />
 
-        <EditText
-            android:id="@+id/txUserId"
+        <Spinner
+            android:id="@+id/family_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/user_id"
-            android:textSize="15sp"/>
+            android:entries="@array/family_member"
+            android:text="@string/family_member"/>
 
         <TextView
             android:id="@+id/readingDate"
@@ -44,7 +42,6 @@
             android:hint="@string/reading_date"
             android:paddingStart="4dp"
             android:textSize="15sp" />
-
 
         <TextView
             android:id="@+id/readingTime"

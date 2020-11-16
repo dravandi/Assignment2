@@ -38,6 +38,7 @@ import java.util.Date;
 
 public class BloodPressureApp extends AppCompatActivity {
 
+
     // Connect to firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -50,16 +51,10 @@ public class BloodPressureApp extends AppCompatActivity {
 //    TextView timeText;
 //    TextView dateText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
@@ -189,8 +184,7 @@ public class BloodPressureApp extends AppCompatActivity {
         setValueTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(BloodPressureApp.this,
-                        getString(R.string.db_fetch_err) + e.toString(),
+                Toast.makeText(BloodPressureApp.this, getString(R.string.db_fetch_err) + e.toString(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -372,4 +366,3 @@ public class BloodPressureApp extends AppCompatActivity {
         }
     }
 }
-
