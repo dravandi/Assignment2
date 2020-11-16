@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/inputLayout"
-        android:layout_width="419dp"
-        android:layout_height="121dp"
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="135dp">
@@ -21,20 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/family_member"
-            android:text="@string/family_member"/>
+            android:text="@string/family_member" />
 
-
-        <EditText
-            android:id="@+id/txUserId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/user_id"
-            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/txSystolicReading"
-            android:layout_width="match_parent"
+            android:layout_width="425dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:ems="10"
@@ -60,9 +52,10 @@
             android:id="@+id/displayLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:orientation="vertical" >
 
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/bt_create"
@@ -71,11 +64,7 @@
         android:background="@color/createButtonBG"
         android:onClick="createReading"
         android:text="@string/create_reading"
-        android:textColor="@color/buttonText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="87dp" />
+        android:textColor="@color/buttonText" />
 
     <Button
         android:id="@+id/btn_GenReport"
@@ -84,12 +73,9 @@
         android:background="@color/createButtonBG"
         android:onClick="createReading"
         android:text="@string/generate_report"
-        android:textColor="@color/buttonText"
-        app:layout_constraintBottom_toTopOf="@+id/bt_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+        android:textColor="@color/buttonText" />
+
+
 
 
 </LinearLayout>
