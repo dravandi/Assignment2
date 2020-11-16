@@ -194,13 +194,13 @@ public class BloodPressureApp extends AppCompatActivity {
     private void displayReadings(ArrayList<BPReading> bpReadingsList){
         for (int i = 0; i < bpReadingsList.size(); i++) {
 
-            final int ADDED_MARGINS = 160; //Added each time readings are added to make up for the
+//            final int ADDED_MARGINS = 160; //Added each time readings are added to make up for the
             // addition margin from each reading (scrollview takes it's height from the inner
             // linear layout's height, minus margins
 
             LinearLayout displayLayout = findViewById(R.id.displayLayout);
             int paddingBottom = displayLayout.getPaddingBottom();
-            displayLayout.setPadding(0, 0, 0, paddingBottom + ADDED_MARGINS);
+//            displayLayout.setPadding(0, 0, 0, paddingBottom + ADDED_MARGINS);
 
 
             // First Row
@@ -301,10 +301,10 @@ public class BloodPressureApp extends AppCompatActivity {
         readingText.setText(prependText + text);
         readingText.setId(View.generateViewId());
         readingText.setTextSize(15);
-        readingText.setPadding(10,10,10,0);
+//        readingText.setPadding(10,10,10,0);
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10, 10, 10, 0);
+//        lp.setMargins(10, 10, 10, 0);
         readingText.setLayoutParams(lp);
 
         return readingText;
@@ -316,10 +316,10 @@ public class BloodPressureApp extends AppCompatActivity {
         readingText.setText(prependText + text);
         readingText.setId(View.generateViewId());
         readingText.setTextSize(12);
-        readingText.setPadding(10,0,10,0);
+//        readingText.setPadding(10,0,10,0);
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10, 0, 10, 0);
+//        lp.setMargins(10, 0, 10, 0);
         readingText.setLayoutParams(lp);
 
         return readingText;
@@ -331,10 +331,10 @@ public class BloodPressureApp extends AppCompatActivity {
         readingText.setText(prependText + text);
         readingText.setId(View.generateViewId());
         readingText.setTextSize(12);
-        readingText.setPadding(10,0,10,10);
+//        readingText.setPadding(10,0,10,10);
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10, 0, 10, 10);
+//        lp.setMargins(10, 0, 10, 10);
         readingText.setLayoutParams(lp);
 
         return readingText;
