@@ -3,8 +3,6 @@ package ca.bcit.assignment2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -13,13 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,18 +31,11 @@ import java.util.Date;
 
 public class BloodPressureApp extends AppCompatActivity {
 
-    // Connect to firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    // Will create a subtable called "BPReadings" when you first add an entry
     DatabaseReference dbRef = database.getReference().child("BPReadings");
 
     ArrayList<BPReading> bpReadingsList = new ArrayList<>();
-
-//    final Calendar myCalendar = Calendar.getInstance();
-//    TextView timeText;
-//    TextView dateText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +59,6 @@ public class BloodPressureApp extends AppCompatActivity {
 //        });
 
 
-
-        // Takes snapshot of firebase, empties + repopulates bpReadingsList, displays tasks
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -91,69 +77,6 @@ public class BloodPressureApp extends AppCompatActivity {
             }
         });
 
-        // Sets default date and time
-//        Date d = new Date();
-//        CharSequence defaultDate = DateFormat.format("MM/dd/yy", d.getTime());
-//        dateText = findViewById(R.id.readingDate);
-//        dateText.setText(getString(R.string.reading_date) + " " + defaultDate);
-
-        // Sets default time
-//        CharSequence defaultTime = DateFormat.format("HH:mm", d.getTime());
-//        timeText = findViewById(R.id.readingTime);
-//
-//        timeText.setText(getString(R.string.reading_time) + " " + defaultTime);
-//
-//        // Date Picker stuff
-//        dateText = findViewById(R.id.readingDate);
-
-//        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                myCalendar.set(Calendar.YEAR, year);
-//                myCalendar.set(Calendar.MONTH, monthOfYear);
-//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                updateLabel(dateText);
-//            }
-//
-//        };
-
-//        dateText.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                new DatePickerDialog(BloodPressureApp.this, date, myCalendar
-//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        });
-
-        // TimePicker stuff
-//        timeText = findViewById(R.id.readingTime);
-//
-//        timeText.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Calendar mcurrentTime = Calendar.getInstance();
-//                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-//                int minute = mcurrentTime.get(Calendar.MINUTE);
-//                TimePickerDialog mTimePicker;
-//                mTimePicker = new TimePickerDialog(BloodPressureApp.this,
-//                        new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-//
-//                        timeText.setText(getString(R.string.reading_time) + " " + selectedHour +
-//                                ":" + selectedMinute);
-//                    }
-//                }, hour, minute, false);//Yes 24 hour time
-//                mTimePicker.setTitle(getString(R.string.time_picker_title));
-//                mTimePicker.show();
-//
-//            }
-//        });
         Button genReportBtn = findViewById(R.id.btn_GenReport);
         genReportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +87,6 @@ public class BloodPressureApp extends AppCompatActivity {
         });
 
     }
-    //Grabs info from input and creates a reading.
     public void createReading(View view) {
         LinearLayout displayLayout = findViewById(R.id.displayLayout);
         removeAllChildViews(displayLayout);
@@ -182,11 +104,9 @@ public class BloodPressureApp extends AppCompatActivity {
         editText.setText("");
 
 
-        //creates new reading from input data
         BPReading bpReading = new BPReading(userId,
                 systolicReading,
                 diastolicReading);
-        //Makes a warning toast if condition is hypertensive.
         if(bpReading.condition.equals("HYPERTENSIVE")){
             Toast.makeText(BloodPressureApp.this,
                     "You should consult a doctor ASAP!",
@@ -206,20 +126,15 @@ public class BloodPressureApp extends AppCompatActivity {
         });
     }
 
-    //Creates a Layout and View for each title.
     private void displayReadings(ArrayList<BPReading> bpReadingsList){
         for (int i = 0; i < bpReadingsList.size(); i++) {
 
-            final int ADDED_MARGINS = 160; //Added each time readings are added to make up for the
-            // addition margin from each reading (scrollview takes it's height from the inner
-            // linear layout's height, minus margins
+            final int ADDED_MARGINS = 160;
 
             LinearLayout displayLayout = findViewById(R.id.displayLayout);
             int paddingBottom = displayLayout.getPaddingBottom();
             displayLayout.setPadding(0, 0, 0, paddingBottom + ADDED_MARGINS);
 
-
-            // First Row
             LinearLayout displaySublayout1 = new LinearLayout(this);
             displaySublayout1.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -236,7 +151,6 @@ public class BloodPressureApp extends AppCompatActivity {
             displaySublayout1.addView(systolicReading);
             displaySublayout1.addView(diastolicReading);
 
-            // Second Row
             LinearLayout displaySublayout2 = new LinearLayout(this);
             displaySublayout2.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -249,7 +163,6 @@ public class BloodPressureApp extends AppCompatActivity {
             displaySublayout2.addView(date);
             displaySublayout2.addView(time);
 
-            // Third Row
             LinearLayout displaySublayout3 = new LinearLayout(this);
             displaySublayout1.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -258,14 +171,12 @@ public class BloodPressureApp extends AppCompatActivity {
 
             displaySublayout3.addView(condition);
 
-            // Fourth Row
             LinearLayout displaySublayout4 = new LinearLayout(this);
             displaySublayout1.setOrientation(LinearLayout.HORIZONTAL);
 
 
             final String id = bpReadingsList.get(i).id;
 
-            // Sets up edit button -- send the reading id to the other activity
             TextView editReading = viewCreatorLine3("", getString(R.string.edit));
             editReading.setTypeface(Typeface.MONOSPACE, Typeface.BOLD_ITALIC);
 
@@ -281,8 +192,6 @@ public class BloodPressureApp extends AppCompatActivity {
                 }
             });
 
-            //Sets up remove button to remove reading from the database + remove all child views so
-            // that the snapshot listener thing can reconstruct the list
             TextView removeReadingButton = viewCreatorLine3("", getString(R.string.remove));
             removeReadingButton.setTypeface(Typeface.MONOSPACE, Typeface.BOLD_ITALIC);
 
@@ -297,10 +206,8 @@ public class BloodPressureApp extends AppCompatActivity {
             displaySublayout4.addView(editReading);
             displaySublayout4.addView(removeReadingButton);
 
-            // Wrapper so that removeAllChildViews can delete views in readings at once
             LinearLayout readingWrapperLayout = new LinearLayout(this);
             readingWrapperLayout.setOrientation(LinearLayout.VERTICAL);
-           // readingWrapperLayout.setBackgroundResource(R.drawable.line_background_medical);
 
 
             readingWrapperLayout.addView(displaySublayout1);
@@ -311,7 +218,7 @@ public class BloodPressureApp extends AppCompatActivity {
         }
     }
 
-    // Sets properties for stuff in the first layout of a reading
+
     public TextView viewCreatorLine1(String prependText, String text){
         TextView readingText = new TextView(this);
         readingText.setText(prependText + text);
@@ -326,7 +233,6 @@ public class BloodPressureApp extends AppCompatActivity {
         return readingText;
     }
 
-    // Sets properties for stuff in the second layout of a reading
     public TextView viewCreatorLine2(String prependText, String text){
         TextView readingText = new TextView(this);
         readingText.setText(prependText + text);
@@ -341,7 +247,6 @@ public class BloodPressureApp extends AppCompatActivity {
         return readingText;
     }
 
-    // Sets properties for stuff in the third layout of a reading
     public TextView viewCreatorLine3(String prependText, String text){
         TextView readingText = new TextView(this);
         readingText.setText(prependText + text);
@@ -356,14 +261,6 @@ public class BloodPressureApp extends AppCompatActivity {
         return readingText;
     }
 
-    // Updates data due textview with calendar picker selection
-//    private void updateLabel(TextView textView) {
-////        String myFormat = getString(R.string.date_format);
-////        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-////
-////        textView.setText(getString(R.string.reading_date) + " " + sdf.format(myCalendar.getTime()));
-////    }
-
 
     public void hideSoftKeyboard(View view){
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -371,9 +268,6 @@ public class BloodPressureApp extends AppCompatActivity {
     }
 
 
-    // Removes all readings from list every time a new one is added in order to avoid mysteriously
-    // appearing duplicate tasks. For loop was unable to remove all children for some reason, so
-    // went with while loop.
     void removeAllChildViews(ViewGroup viewGroup) {
 
         while (viewGroup.getChildCount() > 0) {
@@ -391,8 +285,6 @@ class BPReading {
     public String diastolicReading;
     public String condition;
 
-    // Add this to get rid on 'no-argument constructor' error. Also make sure the class is
-    // static if an inner class (like this one) or that the class is in it's own file.
     public BPReading() {}
 
 
@@ -401,9 +293,6 @@ class BPReading {
 
         this.id = String.valueOf(System.currentTimeMillis());
         this.userId = userId;
-
-        //Code block for autogenerating date and time for the reading.
-        //Converts system time into a formatted datetime string and splits it.
         Date currentDate = new Date(System.currentTimeMillis());
         SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         String dateTime = dateTimeFormatter.format(currentDate);
@@ -414,9 +303,6 @@ class BPReading {
         this.systolicReading = systolicReading;
         this.diastolicReading = diastolicReading;
 
-        //Code block for auto-generating condition for the reading.
-        //Converts readings into ints so they can be compared.
-        //Decides the condition based on a combination of both readings.
         int systolicReadingInt = Integer.parseInt(this.systolicReading);
         int diastolicReadingInt = Integer.parseInt(this.diastolicReading);
         if(systolicReadingInt > 180 || diastolicReadingInt > 120){
@@ -511,7 +397,6 @@ class BPReading {
     }
 }
 
-//Possible condition types.
 enum ConditionTypes{
     NORMAL, ELEVATED, STAGE1, STAGE2, HYPERTENSIVE
 }

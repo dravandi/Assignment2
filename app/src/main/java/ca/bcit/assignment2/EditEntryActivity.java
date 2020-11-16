@@ -30,10 +30,8 @@ import java.util.Locale;
 
 public class EditEntryActivity extends AppCompatActivity {
 
-    // Connect to firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    // Will create a subtable called "BPReadings" when you first add an entry
     DatabaseReference myRef = database.getReference().child("BPReadings");
 
 
@@ -58,20 +56,16 @@ public class EditEntryActivity extends AppCompatActivity {
 
         id = getIntent().getStringExtra(getString(R.string.id_extra));
 
-        // Sets default date and time
         Date d = new Date();
         CharSequence defaultDate = DateFormat.format("MM/dd/yy", d.getTime());
         dateText = findViewById(R.id.readingDate);
         dateText.setText(getString(R.string.reading_date) + " " + defaultDate);
 
-        // Sets default time
         CharSequence defaultTime = DateFormat.format("hh:mm", d.getTime());
         timeText = findViewById(R.id.readingTime);
 
         timeText.setText(getString(R.string.reading_time) + " " + defaultTime);
 
-
-        // Date Picker stuff
         dateText = findViewById(R.id.readingDate);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -120,7 +114,6 @@ public class EditEntryActivity extends AppCompatActivity {
             }
         });
 
-        // TimePicker stuff
         timeText = findViewById(R.id.readingTime);
 
         timeText.setOnClickListener(new View.OnClickListener() {
@@ -148,8 +141,6 @@ public class EditEntryActivity extends AppCompatActivity {
 
     }
 
-    //Uses the ID of the source reading (the id is the key in firebase) to create a new reading and
-    // replace the old one
     public void editReading(View view){
         EditText editText = findViewById(R.id.UserId);
         String userId = editText.getText().toString();
@@ -188,8 +179,6 @@ public class EditEntryActivity extends AppCompatActivity {
         finish();
     }
 
-
-    // Updates data due textview with calendar picker selection
     private void updateLabel(TextView textView) {
         String myFormat = getString(R.string.date_format);
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
