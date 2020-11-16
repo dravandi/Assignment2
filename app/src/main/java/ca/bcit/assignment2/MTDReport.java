@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,9 +59,9 @@ public class MTDReport extends AppCompatActivity {
     }
     //Creates report Layout
     public void generateReport(View view){
-        EditText userIDInput = findViewById(R.id.edtGenReport);
-        String userID = userIDInput.getText().toString();
-        userIDInput.setText("");
+        Spinner familyMemberSpinner = findViewById(R.id.family_spinner);
+        String familyMember = familyMemberSpinner.getSelectedItem().toString();
+
         //used for calculating averages
         int systolicTotal = 0;
         int diastolicTotal = 0;
@@ -71,7 +72,7 @@ public class MTDReport extends AppCompatActivity {
         String conditionAverage;
         //Loops through all readings and takes average for ones under the users name.
         for(BPReading bpReading: bpReadingsList){
-            if(bpReading.userId.equals(userID)){
+            if(bpReading.familyMember.equals(familyMember)){
                 systolicTotal = systolicTotal + Integer.parseInt(bpReading.systolicReading);
                 diastolicTotal = diastolicTotal + Integer.parseInt(bpReading.diastolicReading);
                 counter++;

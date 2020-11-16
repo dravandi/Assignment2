@@ -18,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -159,11 +160,10 @@ public class BloodPressureApp extends AppCompatActivity {
         LinearLayout displayLayout = findViewById(R.id.displayLayout);
         removeAllChildViews(displayLayout);
 
-        EditText editText = findViewById(R.id.txUserId);
-        String userId = editText.getText().toString();
-        editText.setText("");
+        Spinner familyMemberSpinner = findViewById(R.id.family_spinner);
+        String familyMember = familyMemberSpinner.getSelectedItem().toString();
 
-        editText = findViewById(R.id.txSystolicReading);
+        EditText editText = findViewById(R.id.txSystolicReading);
         String systolicReading = editText.getText().toString();
         editText.setText("");
 
@@ -173,7 +173,7 @@ public class BloodPressureApp extends AppCompatActivity {
 
 
         //creates new reading from input data
-        BPReading bpReading = new BPReading(userId,
+        BPReading bpReading = new BPReading(familyMember,
                 systolicReading,
                 diastolicReading);
         //Makes a warning toast if condition is hypertensive.
@@ -213,8 +213,8 @@ public class BloodPressureApp extends AppCompatActivity {
             LinearLayout displaySublayout1 = new LinearLayout(this);
             displaySublayout1.setOrientation(LinearLayout.HORIZONTAL);
 
-            TextView userId = viewCreatorLine1(getString(R.string.prepend_userId),
-                    bpReadingsList.get(i).userId);
+            TextView familyMember = viewCreatorLine1(getString(R.string.prepend_familyMember),
+                    bpReadingsList.get(i).familyMember);
 
             TextView systolicReading = viewCreatorLine1(getString(R.string.prepend_systolic),
                     bpReadingsList.get(i).systolicReading);
@@ -222,7 +222,7 @@ public class BloodPressureApp extends AppCompatActivity {
             TextView diastolicReading = viewCreatorLine1(getString(R.string.prepend_diastolic),
                     bpReadingsList.get(i).diastolicReading);
 
-            displaySublayout1.addView(userId);
+            displaySublayout1.addView(familyMember);
             displaySublayout1.addView(systolicReading);
             displaySublayout1.addView(diastolicReading);
 

@@ -3,6 +3,7 @@
     <string name="id_extra">id</string>
     <string name="db_fetch_err">Something Went Wrong.</string>
     <string name="date_format">mm/dd/yy</string>
+    <string name="prepend_familyMember">Family member: </string>
     <string name="prepend_userId">User Id: </string>
     <string name="prepend_systolic">Systolic Pressure: </string>
     <string name="prepend_diastolic">Diastolic Pressure: </string>
@@ -27,4 +28,11 @@
     <string name="systolic_label">Systolic Average: </string>
     <string name="diastolic_label">Diastolic Average: </string>
     <string name="condition_label">Condition Average: </string>
+    <string name="family_member">Select a family member</string>
+    <string-array name="family_member">
+        <item>father@home.com</item>
+        <item>mother@home.com</item>
+        <item>grandfather@home.com</item>
+        <item>grandmother@home.com</item>
+    </string-array>
 </resources>

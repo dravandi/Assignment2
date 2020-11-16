@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -151,11 +152,10 @@ public class EditEntryActivity extends AppCompatActivity {
     //Uses the ID of the source reading (the id is the key in firebase) to create a new reading and
     // replace the old one
     public void editReading(View view){
-        EditText editText = findViewById(R.id.txUserId);
-        String userId = editText.getText().toString();
-        editText.setText("");
+        Spinner familyMemberSpinner = findViewById(R.id.family_spinner);
+        String familyMember = familyMemberSpinner.getSelectedItem().toString().trim();
 
-        editText = findViewById(R.id.txSystolicReading);
+        EditText editText = findViewById(R.id.txSystolicReading);
         String systolicReading = editText.getText().toString();
         editText.setText("");
 
@@ -167,7 +167,7 @@ public class EditEntryActivity extends AppCompatActivity {
         String condition = editText.getText().toString();
         editText.setText("");
 
-        BPReading updatedBPReading = new BPReading(userId,
+        BPReading updatedBPReading = new BPReading(familyMember,
                 systolicReading,
                 diastolicReading);
         updatedBPReading.id = id;

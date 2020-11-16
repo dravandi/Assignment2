@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BPReading {
+    public String familyMember;
     public String id;
     public String userId;
     public String time;
@@ -17,16 +18,16 @@ public class BPReading {
     public BPReading() {}
 
 
-    public BPReading(String userId, String systolicReading,
+    public BPReading(String familyMember, String systolicReading,
                      String diastolicReading) {
 
         this.id = String.valueOf(System.currentTimeMillis());
-        this.userId = userId;
+        this.familyMember = familyMember;
 
         //Code block for autogenerating date and time for the reading.
         //Converts system time into a formatted datetime string and splits it.
         Date currentDate = new Date(System.currentTimeMillis());
-        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("mm/dd/yyyy HH:mm:ss");
         String dateTime = dateTimeFormatter.format(currentDate);
         String[] splitDateTime = dateTime.split(" ");
         this.date = splitDateTime[0];
@@ -61,12 +62,12 @@ public class BPReading {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getFamilyMember() {
+        return familyMember;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setFamilyMember(String familyMember) {
+        this.familyMember = familyMember;
     }
 
     public String getTime() {

@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".BloodPressureApp">
 
     <LinearLayout
         android:id="@+id/inputLayout"
-        android:layout_width="0dp"
-        android:layout_height="192dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="419dp"
+        android:layout_height="121dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/bt_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtCreatorNames">
+        tools:layout_editor_absoluteY="135dp">
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/readingDate"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:ems="10"-->
-        <!--            android:hint="@string/reading_date"-->
-        <!--            android:paddingStart="4dp"-->
-        <!--            android:textSize="15sp" />-->
+        <Spinner
+            android:id="@+id/family_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/family_member"
+            android:text="@string/family_member"/>
 
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/readingTime"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="11dp"-->
-        <!--            android:layout_marginBottom="0dp"-->
-        <!--            android:ems="10"-->
-        <!--            android:hint="@string/reading_time"-->
-        <!--            android:paddingStart="4dp"-->
-        <!--            android:textSize="15sp"/>-->
 
         <EditText
             android:id="@+id/txUserId"
@@ -52,6 +36,7 @@
             android:id="@+id/txSystolicReading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/systolic_readings"
             android:textSize="15sp" />
@@ -67,12 +52,9 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayout">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/displayLayout"
@@ -80,15 +62,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
-
-    <TextView
-        android:id="@+id/txtCreatorNames"
-        android:layout_width="258dp"
-        android:layout_height="31dp"
-        android:text="@string/creatorNames"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -99,13 +72,10 @@
         android:onClick="createReading"
         android:text="@string/create_reading"
         android:textColor="@color/buttonText"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtCreatorNames"
-        app:layout_constraintVertical_bias="0.549"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="87dp" />
 
     <Button
         android:id="@+id/btn_GenReport"
@@ -115,12 +85,11 @@
         android:onClick="createReading"
         android:text="@string/generate_report"
         android:textColor="@color/buttonText"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bt_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_create"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
