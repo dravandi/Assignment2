@@ -151,7 +151,7 @@ public class EditEntryActivity extends AppCompatActivity {
     //Uses the ID of the source reading (the id is the key in firebase) to create a new reading and
     // replace the old one
     public void editReading(View view){
-        EditText editText = findViewById(R.id.txUserId);
+        EditText editText = findViewById(R.id.UserId);
         String userId = editText.getText().toString();
         editText.setText("");
 

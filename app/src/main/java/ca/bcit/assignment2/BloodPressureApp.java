@@ -61,6 +61,17 @@ public class BloodPressureApp extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+//        Button create_button = findViewById(R.id.bt_create);
+//
+//        create_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                createReading(v);
+//            }
+//        });
+
+
+
         // Takes snapshot of firebase, empties + repopulates bpReadingsList, displays tasks
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -158,7 +169,7 @@ public class BloodPressureApp extends AppCompatActivity {
         LinearLayout displayLayout = findViewById(R.id.displayLayout);
         removeAllChildViews(displayLayout);
 
-        EditText editText = findViewById(R.id.txUserId);
+        EditText editText = findViewById(R.id.UserId);
         String userId = editText.getText().toString();
         editText.setText("");
 
