@@ -16,7 +16,8 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/line_background_medical">
 
         <Button
             android:id="@+id/bt_edit"
@@ -27,12 +28,13 @@
             android:textColor="@color/buttonText"
             android:text="@string/edit_reading" />
 
-        <Spinner
-            android:id="@+id/family_spinner"
+        <EditText
+            android:id="@+id/txUserId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/family_member"
-            android:text="@string/family_member"/>
+            android:ems="10"
+            android:hint="@string/user_id"
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/readingDate"
@@ -42,6 +44,7 @@
             android:hint="@string/reading_date"
             android:paddingStart="4dp"
             android:textSize="15sp" />
+
 
         <TextView
             android:id="@+id/readingTime"

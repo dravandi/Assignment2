@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -18,7 +17,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,7 +36,6 @@ import java.util.Date;
 
 public class BloodPressureApp extends AppCompatActivity {
 
-
     // Connect to firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -51,10 +48,16 @@ public class BloodPressureApp extends AppCompatActivity {
 //    TextView timeText;
 //    TextView dateText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
 
         setContentView(R.layout.activity_main);
 
@@ -155,10 +158,11 @@ public class BloodPressureApp extends AppCompatActivity {
         LinearLayout displayLayout = findViewById(R.id.displayLayout);
         removeAllChildViews(displayLayout);
 
-        Spinner familyMemberSpinner = findViewById(R.id.family_spinner);
-        String familyMember = familyMemberSpinner.getSelectedItem().toString();
+        EditText editText = findViewById(R.id.txUserId);
+        String userId = editText.getText().toString();
+        editText.setText("");
 
-        EditText editText = findViewById(R.id.txSystolicReading);
+        editText = findViewById(R.id.txSystolicReading);
         String systolicReading = editText.getText().toString();
         editText.setText("");
 
@@ -168,7 +172,7 @@ public class BloodPressureApp extends AppCompatActivity {
 
 
         //creates new reading from input data
-        BPReading bpReading = new BPReading(familyMember,
+        BPReading bpReading = new BPReading(userId,
                 systolicReading,
                 diastolicReading);
         //Makes a warning toast if condition is hypertensive.
@@ -184,7 +188,8 @@ public class BloodPressureApp extends AppCompatActivity {
         setValueTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(BloodPressureApp.this, getString(R.string.db_fetch_err) + e.toString(),
+                Toast.makeText(BloodPressureApp.this,
+                        getString(R.string.db_fetch_err) + e.toString(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -194,21 +199,21 @@ public class BloodPressureApp extends AppCompatActivity {
     private void displayReadings(ArrayList<BPReading> bpReadingsList){
         for (int i = 0; i < bpReadingsList.size(); i++) {
 
-//            final int ADDED_MARGINS = 160; //Added each time readings are added to make up for the
+            final int ADDED_MARGINS = 160; //Added each time readings are added to make up for the
             // addition margin from each reading (scrollview takes it's height from the inner
             // linear layout's height, minus margins
 
             LinearLayout displayLayout = findViewById(R.id.displayLayout);
             int paddingBottom = displayLayout.getPaddingBottom();
-//            displayLayout.setPadding(0, 0, 0, paddingBottom + ADDED_MARGINS);
+            displayLayout.setPadding(0, 0, 0, paddingBottom + ADDED_MARGINS);
 
 
             // First Row
             LinearLayout displaySublayout1 = new LinearLayout(this);
             displaySublayout1.setOrientation(LinearLayout.HORIZONTAL);
 
-            TextView familyMember = viewCreatorLine1(getString(R.string.prepend_familyMember),
-                    bpReadingsList.get(i).familyMember);
+            TextView userId = viewCreatorLine1(getString(R.string.prepend_userId),
+                    bpReadingsList.get(i).userId);
 
             TextView systolicReading = viewCreatorLine1(getString(R.string.prepend_systolic),
                     bpReadingsList.get(i).systolicReading);
@@ -216,7 +221,7 @@ public class BloodPressureApp extends AppCompatActivity {
             TextView diastolicReading = viewCreatorLine1(getString(R.string.prepend_diastolic),
                     bpReadingsList.get(i).diastolicReading);
 
-            displaySublayout1.addView(familyMember);
+            displaySublayout1.addView(userId);
             displaySublayout1.addView(systolicReading);
             displaySublayout1.addView(diastolicReading);
 
@@ -284,7 +289,7 @@ public class BloodPressureApp extends AppCompatActivity {
             // Wrapper so that removeAllChildViews can delete views in readings at once
             LinearLayout readingWrapperLayout = new LinearLayout(this);
             readingWrapperLayout.setOrientation(LinearLayout.VERTICAL);
-            //readingWrapperLayout.setBackgroundResource(R.drawable.line_background_medical);
+           // readingWrapperLayout.setBackgroundResource(R.drawable.line_background_medical);
 
 
             readingWrapperLayout.addView(displaySublayout1);
@@ -301,10 +306,10 @@ public class BloodPressureApp extends AppCompatActivity {
         readingText.setText(prependText + text);
         readingText.setId(View.generateViewId());
         readingText.setTextSize(15);
-//        readingText.setPadding(10,10,10,0);
+        readingText.setPadding(10,10,10,0);
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        lp.setMargins(10, 10, 10, 0);
+        lp.setMargins(10, 10, 10, 0);
         readingText.setLayoutParams(lp);
 
         return readingText;
@@ -316,10 +321,10 @@ public class BloodPressureApp extends AppCompatActivity {
         readingText.setText(prependText + text);
         readingText.setId(View.generateViewId());
         readingText.setTextSize(12);
-//        readingText.setPadding(10,0,10,0);
+        readingText.setPadding(10,0,10,0);
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        lp.setMargins(10, 0, 10, 0);
+        lp.setMargins(10, 0, 10, 0);
         readingText.setLayoutParams(lp);
 
         return readingText;
@@ -331,10 +336,10 @@ public class BloodPressureApp extends AppCompatActivity {
         readingText.setText(prependText + text);
         readingText.setId(View.generateViewId());
         readingText.setTextSize(12);
-//        readingText.setPadding(10,0,10,10);
+        readingText.setPadding(10,0,10,10);
 
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        lp.setMargins(10, 0, 10, 10);
+        lp.setMargins(10, 0, 10, 10);
         readingText.setLayoutParams(lp);
 
         return readingText;
@@ -365,4 +370,137 @@ public class BloodPressureApp extends AppCompatActivity {
             viewGroup.removeView(child);
         }
     }
+}
+class BPReading {
+    public String id;
+    public String userId;
+    public String time;
+    public String date;
+    public String systolicReading;
+    public String diastolicReading;
+    public String condition;
+
+    // Add this to get rid on 'no-argument constructor' error. Also make sure the class is
+    // static if an inner class (like this one) or that the class is in it's own file.
+    public BPReading() {}
+
+
+    public BPReading(String userId, String systolicReading,
+                     String diastolicReading) {
+
+        this.id = String.valueOf(System.currentTimeMillis());
+        this.userId = userId;
+
+        //Code block for autogenerating date and time for the reading.
+        //Converts system time into a formatted datetime string and splits it.
+        Date currentDate = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String dateTime = dateTimeFormatter.format(currentDate);
+        String[] splitDateTime = dateTime.split(" ");
+        this.date = splitDateTime[0];
+        this.time = splitDateTime[1];
+
+        this.systolicReading = systolicReading;
+        this.diastolicReading = diastolicReading;
+
+        //Code block for auto-generating condition for the reading.
+        //Converts readings into ints so they can be compared.
+        //Decides the condition based on a combination of both readings.
+        int systolicReadingInt = Integer.parseInt(this.systolicReading);
+        int diastolicReadingInt = Integer.parseInt(this.diastolicReading);
+        if(systolicReadingInt > 180 || diastolicReadingInt > 120){
+            this.condition = ConditionTypes.HYPERTENSIVE.toString();
+        } else if(systolicReadingInt >= 140 || diastolicReadingInt >= 90){
+            this.condition = ConditionTypes.STAGE2.toString();
+        } else if(systolicReadingInt >= 130 || diastolicReadingInt >= 80){
+            this.condition = ConditionTypes.STAGE1.toString();
+        } else if(systolicReadingInt >= 120){
+            this.condition = ConditionTypes.ELEVATED.toString();
+        } else {
+            this.condition = ConditionTypes.NORMAL.toString();
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime() {
+        Date currentDate = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String dateTime = dateTimeFormatter.format(currentDate);
+        String[] splitDateTime = dateTime.split(" ");
+        this.date = splitDateTime[0];
+        this.time = splitDateTime[1];
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        Date currentDate = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String dateTime = dateTimeFormatter.format(currentDate);
+        String[] splitDateTime = dateTime.split(" ");
+        this.date = splitDateTime[0];
+        this.time = splitDateTime[1];
+    }
+
+    public String getSystolicReading() {
+        return systolicReading;
+    }
+
+    public void setSystolicReading(String systolicReading) {
+        this.systolicReading = systolicReading;
+    }
+
+    public String getDiastolicReading() {
+        return diastolicReading;
+    }
+
+    public void setDiastolicReading(String diastolicReading) {
+        this.diastolicReading = diastolicReading;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition() {
+        int systolicReadingInt = Integer.parseInt(this.getSystolicReading());
+        int diastolicReadingInt = Integer.parseInt(this.getDiastolicReading());
+        if(systolicReadingInt > 180 || diastolicReadingInt > 120){
+            this.condition = ConditionTypes.HYPERTENSIVE.toString();
+        } else if(systolicReadingInt >= 140 || diastolicReadingInt >= 90){
+            this.condition = ConditionTypes.STAGE2.toString();
+        } else if(systolicReadingInt >= 130 || diastolicReadingInt >= 80){
+            this.condition = ConditionTypes.STAGE1.toString();
+        } else if(systolicReadingInt >= 120){
+            this.condition = ConditionTypes.ELEVATED.toString();
+        } else {
+            this.condition = ConditionTypes.NORMAL.toString();
+        }
+    }
+}
+
+//Possible condition types.
+enum ConditionTypes{
+    NORMAL, ELEVATED, STAGE1, STAGE2, HYPERTENSIVE
 }

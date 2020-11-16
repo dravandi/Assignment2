@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +22,7 @@ import java.util.ArrayList;
 
 public class MTDReport extends AppCompatActivity {
 
+    // Connect to firebase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     // Will create a subtable called "BPReadings" when you first add an entry
@@ -58,9 +58,9 @@ public class MTDReport extends AppCompatActivity {
     }
     //Creates report Layout
     public void generateReport(View view){
-        Spinner familyMemberSpinner = findViewById(R.id.family_spinner);
-        String familyMember = familyMemberSpinner.getSelectedItem().toString();
-
+        EditText userIDInput = findViewById(R.id.edtGenReport);
+        String userID = userIDInput.getText().toString();
+        userIDInput.setText("");
         //used for calculating averages
         int systolicTotal = 0;
         int diastolicTotal = 0;
@@ -69,16 +69,14 @@ public class MTDReport extends AppCompatActivity {
         double systolicAverage;
         double diastolicAverage;
         String conditionAverage;
-
         //Loops through all readings and takes average for ones under the users name.
         for(BPReading bpReading: bpReadingsList){
-            if(bpReading.familyMember.equals(familyMember)){
+            if(bpReading.userId.equals(userID)){
                 systolicTotal = systolicTotal + Integer.parseInt(bpReading.systolicReading);
                 diastolicTotal = diastolicTotal + Integer.parseInt(bpReading.diastolicReading);
                 counter++;
             }
         }
-
         //Assigns the calculated averages.
         systolicAverage = systolicTotal/counter;
         diastolicAverage = diastolicTotal/counter;
